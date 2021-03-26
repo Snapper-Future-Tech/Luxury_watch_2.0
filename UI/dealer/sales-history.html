@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: "MerriweatherLight Regular";
+  transition: background-color .5s;
+}
+#main {
+  transition: margin-left .5s;
+  padding: 20px;
+}
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+table, th, td {
+  text-align: center;
+  font-family: "MerriweatherLight Regular";
+  font-size: 15px;
+  color:rgb(82, 4, 4)
+}
+tr:hover {background-color:#e0bdbd;}
+.pagination {
+  display: inline-block;
+}
+.pagination a {
+  color: rgb(54, 3, 3);
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+}
+.pagination a.active {
+  background-color: rgb(161, 67, 67);
+  color: rgb(15, 12, 12);
+}
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+}
+
+</style>
+</head>
+<body style="background-color:rgb(225, 235, 236);">
+    <div id="main">
+        <ul class="nav navbar-nav navbar-right">
+            
+            <li><a href="#"><span style="font-size:15px;color:maroon" class="glyphicon glyphicon-search"> <input type="text" placeholder="Search.."></span></a></li>
+            <li><a href="#"><span style="font-size:15px;color:maroon" class="glyphicon glyphicon-user"> SignUp</span></a></li>
+            <li><a href="#"><span style="font-size:15px;color:maroon" class="glyphicon glyphicon-log-in"> Login</span></a></li>
+        </ul>
+        <span style="font-size:25px;color:maroon;cursor:pointer"><img src="/images/rolex-logo.png" height="35" width="40"> Sales History</span>
+    </div>
+    <div id="main">
+        <table style="width:100%">
+            <tr>
+                <th>Serial #</th>
+                <th>Batch ID</th> 
+                <th>Model #</th>
+                <th>Model Name</th>
+                <th>Date of Manufacture</th>
+                <th>Certificate ID</th>
+                <th>Price</th>
+                <th>Customer Name</th>
+                <th>Date of Purchase</th>
+                <th>Insurance Co.</th>
+                <th>Specs</th>
+                <th>Action</th>
+            </tr>
+            <tr>
+                <td>Rl4756</td>
+                <td>Btc#2345</td>
+                <td>Mdl987</td>
+                <td>Classic Sapphire</td>
+                <td>23-11-2017</td>
+                <td>Cft678</td>
+                <td>USD4500</td>
+                <td>Mike Ross</td>
+                <td>07-02-2018</td>
+                <td>State Farm</td>
+                <td>Clutch</td>
+                <td><span class="glyphicon glyphicon-pencil" onclick="somefunc()"></span></td>
+            </tr>
+        </table>
+        </div>
+        <div class="pagination">
+                <a href="#">&laquo;</a>
+                <a class="active" href="#">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <a href="#">6</a>
+                <a href="#">&raquo;</a>
+                <a href="home"><span style="font-family:MerriweatherLight Regular;font-size:15px;color:maroon;cursor:pointer">Back to menu</span></a></li>
+        </div>
+
+</body>
+</html>   

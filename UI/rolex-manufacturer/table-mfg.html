@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body {
+  font-family: "MerriweatherLight Regular";
+  transition: background-color .5s;
+  margin-left: 2%;
+  margin-right: 2%;
+  line-height: normal;
+}
+#main {
+  transition: margin-left .5s;
+  padding: 20px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+table, th, td {
+  text-align: center;
+  font-family: "MerriweatherLight Regular";
+  font-size: 15px;
+  color:rgb(82, 4, 4)
+}
+
+dl, dt, dd {
+  font-family: "MerriweatherLight Regular";
+  font-size: 15px;
+  color:rgb(82, 4, 4)
+}
+tr:hover {background-color:rgb(225, 235, 236);}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+/* Modal Content */
+.modal-content {
+  background-color: #fffdfd;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #080808;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.close:hover,
+.close:focus {
+  color: rgb(241, 3, 3);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+form.form-example {
+    display: table;
+}
+
+div.form-example {
+    display: table-row;
+}
+
+label, input {
+    display: table-cell;
+    margin-bottom: 10px;
+}
+
+label {
+    padding-right: 10px;
+    width: 250px; 
+}
+
+hr { 
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: inset;
+  border-width: 1px;
+}
+.alert1 {
+  background-color: #d6c1c1;
+  margin-left: 5px;
+  padding: 10px;
+  border: 1px solid #888;
+  width: 70%;
+  color : maroon;
+}
+</style>
+</head>
+
+<body style="background-color:rgb(225, 235, 236);">
+    <div id="main">
+            <ul class="nav navbar-nav navbar-right" word-spacing=3px>
+                <li><a href="home"><span style="font-size:15px;color:maroon" class="glyphicon glyphicon-home"> Home</span></a></li>
+                <li><a href="watch-dealer"><span style="font-size:15px;color:maroon" class="glyphicon glyphicon-eye-open"> Rolex Retailers</span></a></li>
+                <li><a href="/"><span style="font-size:15px;color:maroon" class="glyphicon glyphicon-log-out"> Logout</span></a></li>
+            </ul>
+            <span style="color:maroon;cursor:pointer" onclick="openNav()"><img src="/images/rolex-logo.png" height="35" width="40"></span>
+    </div>
+        <div id="main">
+                <table style="width:100%" id="mfg-watch-input">
+                    <thead>
+                      <tr>
+                        <th>Serial #</th>
+                        <th>Batch ID</th> 
+                        <th>Model #</th>
+                        <th>Model Name</th>
+                        <th>Date of Manufacture</th>
+                        <th>Certificate ID</th>
+                        <th>Price</th>
+                        <th>Specs</th>
+                      </tr>
+                    </thead>
+                    <tbody> 
+               
+                    </tbody>
+        </table>
+        </div>
+        
+        <div>
+          <button class="button" id="myBtn" data-target="#myModal">New Product</button>
+          <button class="button" id="shipBtn">Transfer</button>
+          <button class="button" id="historyBtn">View Watch History</button>
+        </div>
+
+      
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h3><b>Add Product Details</b></h3>
+                <hr  />
+            <div class="container">
+              <div class="row">
+                
+                <form class="form-example" id="addform" name= "input" action="#" method="get">
+                
+                <div class="form-example">
+                <label for="srl_no" ><b>Serial No  </b></label>
+                <input type="" id="srl_no" placeholder="Enter Serial no" required><br>
+                </div>
+
+                <div class="form-example">
+                <label for="" ><b>Batch Id  </b></label>
+                <input type="" id="batch_id" placeholder="Enter Batch ID" required><br>
+                </div>
+
+                <div class="form-example">
+                <label for="" ><b>Model No  </b></label>
+                <input type="" id="model_no" placeholder="Enter Model No" required><br>
+                </div>
+
+                <div class="form-example">
+                <label for="" ><b>Model Name  </b></label>
+                <input type="" id="model_name" placeholder="Enter Model Name" required><br>
+                </div>
+
+                <div class="form-example">
+                <label for="date" ><b>Date of Manufacture  </b></label>
+                <input type="date" id="date_mfg" placeholder="Enter Manufacturing Date" required><br>
+                </div>
+
+                <div class="form-example">
+                <label for="" ><b>CertId  </b></label>
+                <input type="" id="cert_id" placeholder="Enter certificate id" required><br>
+                </div>
+
+                <div class="form-example">
+                <label for="" ><b>Price  </b></label>
+                <input type="" id="price" placeholder="Enter Price" required><br>
+                </div>
+
+                <div class="form-example">
+                <label for="" ><b>Specifications  </b></label>
+                <input type="" id="specs" placeholder="Enter Specifications" required><br>
+                </div>
+              </form>
+           
+              
+            <button class="button" id="save" data-dismiss="modal" type="button" ><b>Save Product</b></button>
+            <input type="button" id="btn" value="Reset"/>
+         
+         
+            <div id="question" style="display : none">
+              <div id="alertmsg" class="alert1" style="display: none">
+              </div><br>
+                <span>Do you have more watches to add?</span>
+            <label for="chkYes">
+              <input type="radio" id="chkYes" onclick="Continue()" />
+                Yes
+            </label>
+            <label for="chkNo">
+              <input type="radio" id="chkNo" onclick="Continue()" />
+                No
+            </label>
+            </div>
+
+          
+          </div>
+        </div>
+           
+            <hr  />
+        </div>
+      </div>
+
+    
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js">
+</script>
+
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.jqueryui.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+
+
+<script>
+
+  var modal1 = document.getElementById('myModal');          // Get the modal myModal
+
+  var btn1 = document.getElementById("myBtn");              // Get the button "New Product" that opens the myModal 
+
+  var span = document.getElementsByClassName("close")[0];   // Get the <span> element that closes the modal
+
+// When the user clicks the button, open the modal 
+  btn1.onclick = function() {
+    modal1.style.display = "block";
+  }
+
+// When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+    modal1.style.display = "none";
+  }
+
+  function Continue() {
+        var chkYes = document.getElementById("chkYes");
+        var chkNo = document.getElementById("chkNo");
+        var action = document.getElementById("question");
+        var form1 = document.getElementById("addform");
+            if (chkNo.checked){
+              modal1.style.display = "none" ;
+              form1.reset();
+              chkNo.checked = false;
+              chkYes.checked = false;
+              window.location.href = "watches";
+            }
+            else {
+             action.style.display = "none" ;
+             form1.reset();
+             chkNo.checked = false;
+             chkYes.checked = false;
+             //window.location.href = "watches";
+            }
+      }
+
+
+
+$(document).ready(function(){
+$("#btn").click(function(){
+ /* Single line Reset function executes on click of Reset Button */
+ $("#addform")[0].reset();
+ });
+});
+
+ 
+$("#shipBtn").click(function(){
+      window.location.href = "transfer";
+});
+$("#historyBtn").click(function(){
+      window.location.href = "watch-history";
+});
+
+var token="";
+
+$(document).ready(function() {
+ function LoadData(){
+   //alert(token);
+   $.ajax( {
+     url: 'http://localhost:4000/channels/mychannel/chaincodes/mycc?peer=peer0.org1.rolex.com&fcn=getAllWatches&args=%5B%22MFG%22%5D',
+     type: 'GET',
+     dataType: 'json',
+     data: {  },
+     beforeSend : function( xhr ) {
+         xhr.setRequestHeader( 'Authorization', 'Bearer ' + token );
+     },
+     success: function( response ) {
+       var trHTML = '';
+       debugger;
+       console.log(response);
+       debugger;
+       $.each(response.Watches, function (i, item) {
+
+           trHTML += '<tr><td>' + item.serialNo +
+              '</td><td>' + item.batchId +
+              '</td><td>' + item.modelNo +
+              '</td><td>' + item.modelName +
+              '</td><td>' + item.date +
+              '</td><td>' + item.cftId +
+              '</td><td>' + item.price +
+              '</td><td>' + item.spec +
+              '</td></tr>';
+
+       });
+ 
+          $('#mfg-watch-input > tbody').empty();
+          $('#mfg-watch-input > tbody').append(trHTML);
+     },
+     error: function (xhr, ajaxOptions, thrownError) {
+        alert(xhr.status);
+        //alert(message);
+        alert(thrownError);
+        
+      }
+ } );
+ }
+
+
+ function GenerateToken(){
+     $.ajax({
+         url: "http://localhost:4000/users",
+         type: "POST",
+         dataType: "json", // expected format for response
+         contentType: "application/x-www-form-urlencoded", // send as JSON
+         data: {username:"Jim", orgName:"Org1"},
+
+         success: function(data) {
+           //called when successful
+           //alert(data.token);
+           token=data.token;
+           $("#mfg-watch-input > tbody").empty();
+           LoadData();
+        },
+
+         error: function() {
+           //called when there is an error
+           alert('Please Refresh Application');
+         },
+       });
+   }
+
+ GenerateToken();
+ 
+
+ function PopulateTable(){
+   
+ }
+ 
+ function addProduct(){
+   debugger;
+   alert('call');
+ }
+
+ $('.genToken').click(function(){ 
+       GenerateToken();
+ });
+ $('.loadData').click(function(){ 
+       LoadData();
+ });
+ 
+   $('#mfg-watch-input').DataTable({"paging":   false,
+    "searching": false,
+    "bPaginate": false,
+    "bLengthChange": false,
+    "bFilter": false,
+    "bInfo": false,
+    "bAutoWidth": false
+    });
+   var t = $('#mfg-watch-input').DataTable();
+
+ 
+ $('#save').on( 'click', function () {
+    debugger;
+   
+    var serialNoVal = $("#srl_no")[0].value;
+    var batchIdVal = $("#batch_id")[0].value;
+    var modelNoVal = $("#model_no")[0].value;
+    var modelNameVal = $("#model_name")[0].value;
+    var dateMfgVal = $("#date_mfg")[0].value;
+    var certIdVal = $("#cert_id")[0].value;
+    var priceVal = $("#price")[0].value;
+    var specsVal = $("#specs")[0].value;
+    
+$.ajax( {
+     beforeSend : function( xhr ) {
+         xhr.setRequestHeader( 'Authorization', 'Bearer ' + token );
+     },
+      url: 'http://localhost:4000/channels/mychannel/chaincodes/mycc',
+      type: 'POST',
+      dataType: 'json',
+      traditional: true,
+      contentType: "application/json", 
+      data: JSON.stringify({ 
+       "peers": ["peer0.org1.rolex.com","peer0.org2.dealer.com"],
+        "fcn":"addProduct",
+        "args":[serialNoVal, batchIdVal, modelNoVal, modelNameVal, dateMfgVal, certIdVal, priceVal, specsVal]
+     }),
+     
+     success: function(data){
+      console.log(data);
+     // alert(data);
+     $('#question').show();
+     $('#alertmsg').html("Watch added successfully in Blockchain with Trx Id: " + data[0]+ " in Block Number "+ data[1]).fadeIn('slow');
+     //$('#alertmsg').delay(3000).fadeOut('slow');
+
+   
+     },
+     error: function (xhr, ajaxOptions, thrownError) {
+     
+      debugger;
+        console.log('error'+ xhr.status);
+        console.log('error1'+ thrownError);
+    
+      }
+ } ); 
+   
+});
+});   
+
+</script>
+</body>
+</html>

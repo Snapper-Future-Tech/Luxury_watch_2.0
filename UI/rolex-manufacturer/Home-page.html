@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: "Lato", sans-serif;
+  /* margin: 0;
+  font-size: 17px; */
+  background-image: url("/images/2.jpg");
+  
+}
+
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(236, 227, 227);
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  text-align: center;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 19px;
+  color:black;
+  display: block;
+  transition: 0.3s;
+}
+/* #818181; */
+.sidebar a:hover {
+  color: #838080;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px; 
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+
+* {
+  box-sizing: border-box;
+}
+
+ .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+} 
+
+</style>
+</head>
+<body>
+
+<!-- sidebar -->
+<div id="mySidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+  <img src="/images/rolex.png" class="center" height="70" width="180"><br>
+  <a href="https://www.rolex.com/watches.html">Watches</a>
+  <a href="https://www.rolex.com/about-rolex-watches.html">About Rolex Watches</a>
+  <a href="https://www.rolex.com/rolex-dealers/dealer-locator.html">Store Locator</a>
+  <a href="watch-history">View your Watch Authenticity</a>
+  <a href="https://www.rolex.com/world-of-rolex.html">World of Rolex</a>
+  <a href="https://www.rolex.com/every-rolex-tells-a-story.html">Every Rolex tells a story</a>
+  <a href="login">Login</a>
+</div>
+
+<div id="main"> 
+  <button class="openbtn" onclick="openNav()">☰ Menu </button> 
+</div>
+
+<script>
+function openNav() {
+  document.getElementById("mySidebar").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+
+</script>  
+</body>
+</html> 

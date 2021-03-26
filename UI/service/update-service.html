@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: "MerriweatherLight Regular";
+  transition: background-color .5s;
+  margin-left: 2%;
+  margin-right: 2%;
+  line-height: normal;
+}
+#main {
+  transition: margin-left .5s;
+  padding: 20px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+table, th, td {
+  text-align: center;
+  font-family: "MerriweatherLight Regular";
+  font-size: 15px;
+  color:rgb(82, 4, 4)
+}
+
+dl, dt, dd {
+  font-family: "MerriweatherLight Regular";
+  font-size: 15px;
+  color:rgb(82, 4, 4)
+}
+tr:hover {background-color:#e0bdbd;}
+
+form.form-example {
+    display: table;
+}
+
+div.form-example {
+    display: table-row;
+}
+
+label, input {
+    display: table-cell;
+    margin-bottom: 10px;
+}
+
+label {
+    padding-right: 10px;
+    width: 250px; 
+}
+
+.text {
+  font-family: "MerriweatherLight Regular";
+  font-size: 30px;
+  color:rgb(82, 4, 4)
+}
+.intext {
+  font-family: "MerriweatherLight Regular";
+  font-size: 15px;
+  color:rgb(82, 4, 4)
+}
+hr { 
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: inset;
+  border-width: 1px;
+}
+</style>
+</head>
+
+<body style="background-color:rgb(225, 235, 236);">
+    <div id="main">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="home"><span style="font-size:15px;color:maroon" class="glyphicon glyphicon-home"> Home</span></a></li>
+          <li><a href="watch-dealer"><span style="font-size:15px;color:maroon" class="glyphicon glyphicon-eye-open"> Watches with dealer</span></a></li>
+          <li><a href="/"><span style="font-size:15px;color:maroon" class="glyphicon glyphicon-log-out"> Logout</span></a></li>
+        </ul>
+          <span style="color:maroon;cursor:pointer" onclick="openNav()">&#9776;<img src="/public/images/rolex-logo.png" height="35" width="40"></span>
+    </div>
+              <h4>You have requested for an update of service. Kindly fill in the details.</h4>
+              <hr  />
+<div>
+    <form id="shipForm" action="" method="get" class="form-example">
+
+              <div class="form-example">
+              <label class="intext" for="sr_no" ><b>Serial No  </b></label>
+              <input type="" id="serial_no" placeholder="Enter Serial no" required><br>
+              </div>
+            
+              <div class="form-example">
+              <label class="intext" for="" ><b>Service Id  </b></label>
+              <input type=""  id="ser_id" placeholder="Enter Service Id" required><br>
+              </div>
+
+              <div class="form-example">
+              <label class="intext" for="" ><b>Service Centre  </b></label>
+              <input type=""  id="ser_centre" placeholder="Enter Service Centre" required><br>
+              </div>
+
+              <div class="form-example">
+              <label class="intext" for="" ><b>Date of Servicing  </b></label>
+              <input type="date" id="date_service" placeholder="Enter Date of Service" required><br>
+              </div>
+
+              <div class="form-example"> 
+              <label class="intext" for="" ><b>Servicing Details </b></label>
+              <input type="" id="ser_details" placeholder="Enter Service Details" required><br>
+              </div>
+
+              <div>
+              <button class="button" id="saveBtn" type="button">Update</button>
+              <input type="button" id="btn" value="Reset"/>
+              </div>
+    </form>
+  </div>
+    <div id="alertmsg" class="alert alert-success" style="display: none" background-color="rgb(128, 128, 0)" color="black">
+    </div>
+<script>
+
+$(document).ready(function(){
+$("#btn").click(function(){
+ /* Single line Reset function executes on click of Reset Button */
+ $("#shipForm")[0].reset();
+ });
+});
+
+ function GenerateToken(){
+     $.ajax({
+         url: "http://localhost:4000/users",
+         type: "POST",
+         dataType: "json", // expected format for response
+         contentType: "application/x-www-form-urlencoded", // send as JSON
+         data: {username:"Jim", orgName:"Org1"},
+
+         success: function(data) {
+           //called when successful
+           //alert(data.token);
+           token=data.token;
+        },
+
+         error: function() {
+           //called when there is an error
+           alert('Please Refresh Application');
+         },
+       });
+   }
+
+ GenerateToken();
+ 
+
+ function PopulateTable(){
+   
+ }
+ 
+//  function addProduct(){
+//    debugger;
+//    alert('call');
+//  }
+
+ $('.genToken').click(function(){ 
+       GenerateToken();
+ });
+
+//  $('#save').on( 'click', function () {
+//     debugger;
+   
+
+$('#saveBtn').on('click', function () {
+          debugger;
+          var serialNoVal = $("#serial_no")[0].value;
+          var dealerId = $("#dlr_id")[0].value;
+          var dealerName = $("#dlr_name")[0].value;
+          var dateShip = $("#date_ship")[0].value;      
+   $.ajax( {
+        beforeSend : function( xhr ) {
+            xhr.setRequestHeader( 'Authorization', 'Bearer ' + token );
+        },
+        url: 'http://localhost:4000/channels/mychannel/chaincodes/mycc',
+        type: 'POST',
+        dataType: 'json',
+        traditional: true,
+        contentType: "application/json", 
+        data: JSON.stringify({ 
+        "peers": ["peer0.org1.rolex.com","peer0.org2.dealer.com"],
+         "fcn":"transferMtoD",
+        "args":[serialNoVal, dealerId, dealerName, dateShip]
+      }),
+
+      success: function(data){
+        $('#alertmsg').html("Done! Watch shipped successfully!!").fadeIn('slow');
+        $('#alertmsg').delay(3000).fadeOut('slow');
+      },
+      error: function (xhr, ajaxOptions, thrownError) {
+           debugger;
+         console.log('error'+ xhr.status);
+         console.log('error1'+ thrownError);
+       }
+  } );
+
+ });
+</script>
+</body>
+</html>

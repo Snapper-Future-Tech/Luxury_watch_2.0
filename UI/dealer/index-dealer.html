@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.home{
+    background: url( '/images/rolex-login.jpg');
+    background-size: 1325px 300px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.modal{
+  display: block; /* Hidden by default */
+  position: absolute;
+  top: 30px;
+  left: 120px; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  width: 40%; /* Full width */
+  height: 90%; /* Full height */
+  overflow: hidden; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0,0,0,.0001) /* Black w/ opacity */
+}
+.modal-content {
+  background-color: rgba(0,0,0,.0001);
+  margin: auto;
+  padding: 20px;
+  border:none;
+  width: 80%;
+  font-family: "Palatino";
+  font-size: 15px;
+  color:rgb(201, 169, 138);
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 20px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+.link {
+    font-family: "Palatino";
+    font-size: 17px;
+    color:blanchedalmond;
+}
+
+.link:hover{
+    font-family: "Palatino";
+    font-size: 17px;
+    color:rgb(241, 239, 236);
+}
+
+.form-group .form-control {
+    border-radius: 0;
+    height:30px;
+    border-color:#3b3a3b;
+    background-color:rgb(179, 212, 241)
+} 
+
+button.btn-primary, button.btn-primary:hover,button.btn-primary:active, button.btn-primary:focus {background: #4e4e4c;border-color: #bf9000;border-radius: 0;}
+button.btn-secondary, button.btn-secondary:hover, button.btn-secondary:active,button.btn-secondary:focus {background: #548235;border-color: #548235;border-radius: 0;color: #fff; font-size: 18px; font-weight:600;}
+.btn.action-btn { padding-left: 80px; padding-right: 80px; 	margin-bottom: 20px; font-size: 18px; }
+
+</style>
+</head>
+
+<body class="home">
+<div id="myModal" class="modal">
+    <form class="modal-content">
+        <div class="form-group">
+            <label for="exampleInputEmail1">User Name</label>
+            <input type="email" class="form-control" id="userid" placeholder="Enter your userId">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="pwd" placeholder="Password">
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" id="login">Login</button><br>
+        <div>
+            <span><a class="link"  href="sign-up">Sign up</a>
+            <a class="link" style="float:right" href="#">Forgot password?</a></span>
+        </div>
+    </form>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<script>
+        $(document).ready(function() {
+          $("#login").click(function(){
+              var userid=$("#userid").val();
+              var pwd = $("#pwd").val();
+              if(userid=="admin"&&pwd=="admin"){
+                window.location.href = "watches";
+              }else{
+                alert('Incorrect UserId or Pwd');
+              }
+                //alert('clicked');
+    
+            });
+        });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: "MerriweatherLight Regular";
+  transition: background-color .5s;
+  margin-left: 2%;
+  margin-right: 2%;
+  line-height: normal;
+}
+#main {
+  transition: margin-left .5s;
+  padding: 20px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+table, th, td {
+  text-align: center;
+  font-family: "MerriweatherLight Regular";
+  font-size: 15px;
+  color:rgb(82, 4, 4)
+}
+
+dl, dt, dd {
+  font-family: "MerriweatherLight Regular";
+  font-size: 15px;
+  color:rgb(82, 4, 4)
+}
+tr:hover {background-color:#e0bdbd;}
+
+form.form-example {
+    display: table;
+}
+
+div.form-example {
+    display: table-row;
+}
+
+label, input {
+    display: table-cell;
+    margin-bottom: 10px;
+}
+
+label {
+    padding-right: 10px;
+    width: 250px; 
+}
+
+.text {
+  font-family: "MerriweatherLight Regular";
+  font-size: 30px;
+  color:rgb(82, 4, 4)
+}
+.intext {
+  font-family: "MerriweatherLight Regular";
+  font-size: 15px;
+  color:rgb(82, 4, 4)
+}
+hr { 
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: inset;
+  border-width: 1px;
+}
+.alert1 {
+  background-color: #d6c1c1;
+  margin-left: 5px;
+  padding: 10px;
+  border: 1px solid #888;
+  width: 70%;
+  color : maroon;
+}
+</style>
+</head>
+
+<body style="background-color:rgb(225, 235, 236);">
+    <div id="main">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="watches"><span style="font-size:15px;color:maroon" class="glyphicon glyphicon-home"> Home</span></a></li>
+          <li><a href="watch-customer"><span style="font-size:15px;color:maroon" class="glyphicon glyphicon-eye-open"> Watches@Customers</span></a></li>
+          <li><a href="/"><span style="font-size:15px;color:maroon" class="glyphicon glyphicon-log-out"> Logout</span></a></li>
+        </ul>
+          <span style="color:maroon;cursor:pointer" onclick="openNav()">&#9776;<img src="/images/rolex-logo.png" height="35" width="40"></span>
+    </div>
+              <h3 class="text">Fill Sale details</h3>
+              <hr  />
+<div class="container">
+  <div class="row">
+    <form id="shipForm" action="" method="get" class="form-example">
+
+              <div class="form-example">
+              <label class="intext" for="sr_no" ><b>Serial No  </b></label>
+              <input type="" id="serial_no" placeholder="Enter Serial no" required><br>
+              </div>
+            
+              <div class="form-example">
+              <label class="intext" for="" ><b>Customer Name  </b></label>
+              <input type=""  id="cust_name" placeholder="Enter Customer Name" required><br>
+              </div>
+              <div class="intext">
+                  <span>Insurance required:</span>
+                  <label for="chkYes">
+                      <input type="radio" id="chkYes" name="chkInsurance" onclick="ShowHideDiv()" />
+                      Yes
+                  </label>
+                  <label for="chkNo">
+                      <input type="radio" id="chkNo" name="chkInsurance" onclick="ShowHideDiv()" />
+                      No
+                  </label>
+                  
+                    <div id="insurancecomp" style="display: none">
+                    <hr />
+                      Insurance Id:<br><input type="text" id="insurance_id" placeholder="Enter Insurance Id" /><br>
+                      Insurer:<br><input type="text" id="insurance" placeholder="Enter Insurance Firm" />
+                      Insurance Expiry Date:<br><input type="date" id="exp_date" />
+                    </div>
+                </div>
+
+              <hr />
+              <div class="form-example">
+              <label class="intext" for="" ><b>Date of Sale  </b></label>
+              <input type="date" id="date_sale" placeholder="Enter Date of Sale" required><br>
+              </div>
+
+              <div>
+              <button class="button" id="saveBtn" type="button">Confirm Sale</button>
+              <input type="button" id="btn" value="Reset"/>
+              </div>
+        </div>
+      </form>
+      
+      <div id="question" style="display : none">
+        <br>
+        <div id="alertmsg" class="alert1" style="display: none">
+        </div><br>
+          <span>Do you have more watches to sell?</span>
+      <label for="chkYes2">
+        <input type="radio" id="chkYes_more" onclick="Continue()" />
+          Yes
+      </label>
+      <label for="chkNo2">
+        <input type="radio" id="chkNo_more" onclick="Continue()" />
+          No
+      </label>
+      </div>
+
+</div>
+    
+<script>
+function Continue() {
+        var chkYes2 = document.getElementById("chkYes_more");
+        var chkNo2 = document.getElementById("chkNo_more");
+        var action = document.getElementById("question");
+        var ship = document.getElementById("shipForm");
+            if (chkNo2.checked){
+              action.style.display = "none" ;
+              ship.reset();
+              window.location.href = "watches";
+            }
+            else {
+              action.style.display = "none" ;
+              ship.reset();
+            }
+      }
+
+function ShowHideDiv() {
+            var chkYes = document.getElementById("chkYes");
+            var insurancecomp = document.getElementById("insurancecomp");
+            insurancecomp.style.display = chkYes.checked ? "block" : "none";
+          }
+
+$(document).ready(function(){
+$("#btn").click(function(){
+ /* Single line Reset function executes on click of Reset Button */
+ $("#shipForm")[0].reset();
+ });
+});
+
+
+
+ function GenerateToken(){
+     $.ajax({
+         url: "http://localhost:4000/users",
+         type: "POST",
+         dataType: "json", // expected format for response
+         contentType: "application/x-www-form-urlencoded", // send as JSON
+         data: {username:"Jim", orgName:"Org1"},
+
+         success: function(data) {
+           //called when successful
+           //alert(data.token);
+           token=data.token;
+        },
+
+         error: function() {
+           //called when there is an error
+           alert('Please Refresh Application');
+         },
+       });
+   }
+
+ GenerateToken();
+ 
+
+ function PopulateTable(){
+   
+ }
+ 
+
+ $('.genToken').click(function(){ 
+       GenerateToken();
+ });
+
+//  $('#save').on( 'click', function () {
+//     debugger;
+   
+
+$('#saveBtn').on('click', function () {
+          debugger;
+          var serialNoVal = $("#serial_no")[0].value;
+          var dateofSale = $("#date_sale")[0].value;
+          var insuranceIdVal = $("#insurance_id")[0].value;
+          var insuranceVal = $("#insurance")[0].value;
+          var custNameVal = $("#cust_name")[0].value;
+          var expDateVal = $("#exp_date")[0].value;
+   $.ajax( {
+        beforeSend : function( xhr ) {
+            xhr.setRequestHeader( 'Authorization', 'Bearer ' + token );
+        },
+        url: 'http://localhost:4000/channels/mychannel/chaincodes/mycc',
+        type: 'POST',
+        dataType: 'json',
+        traditional: true,
+        contentType: "application/json", 
+        data: JSON.stringify({ 
+        "peers": ["peer0.org1.rolex.com","peer0.org2.dealer.com"],
+         "fcn":"transferDtoC",
+        "args":[serialNoVal, dateofSale, insuranceVal, custNameVal, expDateVal, insuranceIdVal]
+      }),
+
+      success: function(data){
+        $('#question').show();
+        $('#alertmsg').html("Watch successfully sold with Trx Id: "+ data[0]+ " in Block Number "+ data[1]).fadeIn('slow');
+        //$('#alertmsg').delay(3000).fadeOut('slow');
+      },
+      error: function (xhr, ajaxOptions, thrownError) {
+           debugger;
+         console.log('error'+ xhr.status);
+         console.log('error1'+ thrownError);
+       }
+  } );
+
+ });
+</script>
+</body>
+</html>

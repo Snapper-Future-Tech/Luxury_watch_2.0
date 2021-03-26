@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: "MerriweatherLight Regular";
+  transition: background-color .5s;
+  margin-left: 2%;
+  margin-right: 2%;
+  line-height: normal;
+}
+#main {
+  transition: margin-left .5s;
+  padding: 20px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+table, th, td {
+  text-align: center;
+  font-family: "MerriweatherLight Regular";
+  font-size: 15px;
+  color:rgb(82, 4, 4)
+}
+tr:hover {background-color:rgb(225, 235, 236);}
+</style>
+</head>
+
+<body style="background-color:rgb(225, 235, 236);">
+    <div id="main">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="home"><span style="font-size:15px;color:maroon" class="glyphicon glyphicon-home"> Home</span></a></li>
+                <li><a href="watches"><span style="font-size:15px;color:maroon" class="glyphicon glyphicon-eye-open"> Watches@Rolex</span></a></li>
+                <li><a href="/"><span style="font-size:15px;color:maroon" class="glyphicon glyphicon-log-out"> Logout</span></a></li>
+            </ul>
+            <span style="color:maroon;cursor:pointer" onclick="openNav()">&#9776;<img src="/images/rolex-logo.png" height="35" width="40"></span>
+    </div>
+    <div id="main">
+        <table style="width:100%" id="dealer-watch-input">
+            <thead>
+              <tr>
+                <th>Serial Number</th>
+                <th>Certificate ID</th>
+                <th>Model Number</th>
+                <th>Dealer Id</th>
+                <th>Dealer Name</th>
+                <th>Date of Shipment</th>              
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody> 
+              
+            </tbody>
+</table>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.jqueryui.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+
+      
+ function LoadData(){
+   //alert(token);
+   $.ajax( {
+     url: 'http://localhost:4000/channels/mychannel/chaincodes/mycc?peer=peer0.org1.rolex.com&fcn=getAllWatches&args=%5B%22Dealer%22%5D',
+     type: 'GET',
+     dataType: 'json',
+     data: {  },
+     beforeSend : function( xhr ) {
+         xhr.setRequestHeader( 'Authorization', 'Bearer ' + token );
+     },
+     success: function( response ) {
+       var trHTML = '';
+       $.each(response.Watches, function (i, item) {
+
+           trHTML += '<tr><td>' + item.serialNo +
+              '</td><td>' + item.cftId +
+              '</td><td>' + item.modelNo +
+              '</td><td>' + item.dealerId +
+              '</td><td>' + item.dealerName +
+              '</td><td>' + item.date +
+              '</td><td>' + item.price +
+              '</td></tr>';
+       });
+ 
+          $('#dealer-watch-input > tbody').empty();
+          $('#dealer-watch-input > tbody').append(trHTML);
+     },
+     error: function (xhr, ajaxOptions, thrownError) {
+        alert(xhr.status);
+        //alert(message);
+        alert(thrownError);
+        
+      }
+ } );
+ }
+
+
+ function GenerateToken(){
+     $.ajax({
+         url: "http://localhost:4000/users",
+         type: "POST",
+         dataType: "json", // expected format for response
+         contentType: "application/x-www-form-urlencoded", // send as JSON
+         data: {username:"Jim", orgName:"Org1"},
+
+         success: function(data) {
+           //called when successful
+           //alert(data.token);
+           token=data.token;
+           $("#dealer-watch-input > tbody").empty();
+           LoadData();
+        },
+
+         error: function() {
+           //called when there is an error
+           alert('Please Refresh Application');
+         },
+       });
+   }
+
+ GenerateToken();
+ 
+
+ function PopulateTable(){
+   
+ }
+ 
+ function addProduct(){
+   debugger;
+   alert('call');
+ }
+
+ $('.genToken').click(function(){ 
+       GenerateToken();
+ });
+ $('.loadData').click(function(){ 
+       LoadData();
+ });
+ 
+ $('#dealer-watch-input').DataTable({"paging":   false,
+    "searching": false,
+    "bPaginate": false,
+    "bLengthChange": false,
+    "bFilter": false,
+    "bInfo": false,
+    "bAutoWidth": false,
+    "destory": true
+    });
+    
+   var t = $('#dealer-watch-input').DataTable();
+  });
+</script>
+</body>
+</html>
