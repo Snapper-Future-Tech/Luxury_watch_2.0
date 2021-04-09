@@ -43,9 +43,14 @@ const query = async (channelName, chaincodeName, args, fcn, username, org_name) 
         // Get the contract from the network.
         const contract = network.getContract(chaincodeName);
         let result;
+        console.log("22",fcn)
+        if (fcn == "GetAllWatches" || fcn =="GetProductHistory" || fcn == 'CalculateFinalCreditScore' || fcn=='GetPaymentsById' || fcn=='GetPaymentsDetails') {
+            
+            console.log("---1---",args)
+            args = args.replace(/'/g, '"');
+            console.log("---1---",args)
 
-        if (fcn == "GetRecordsByID" || fcn =="GetAssetHistory" || fcn == 'CalculateFinalCreditScore' || fcn=='GetPaymentsById' || fcn=='GetPaymentsDetails') {
-            result = await contract.evaluateTransaction(fcn, args[0]);
+            result = await contract.evaluateTransaction(fcn, "MFG")
 
            
 

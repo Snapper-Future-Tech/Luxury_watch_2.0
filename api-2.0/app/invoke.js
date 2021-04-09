@@ -69,7 +69,13 @@ const invokeTransaction = async (channelName, chaincodeName, fcn, args, username
 
         switch (fcn) {
             case "AddProduct":
-                result = await contract.submitTransaction(fcn, args[0]);
+                console.log("1---1-",args)
+                console.log("1---1-",JSON.stringify(args))
+               // let args2 = JSON.parse(args);
+
+                result = await contract.submitTransaction(fcn, args);
+
+
                 //message = `Successfully added the Certificate asset with key ${JSON.parse(args[0]).SerialNo}`
                 console.log("result si -----------------", result.toString())
                 result = {"txId": result.toString()}

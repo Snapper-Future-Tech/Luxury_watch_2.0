@@ -301,7 +301,7 @@ $(document).ready(function() {
  function LoadData(){
    //alert(token);
    $.ajax( {
-     url: 'http://localhost:4000/channels/mychannel/chaincodes/mycc?peer=peer0.org1.rolex.com&fcn=getAllWatches&args=%5B%22MFG%22%5D',
+     url: 'http://localhost:4000/channels/mychannel/chaincodes/watch_cc?peer=peer0.org1.example.com&fcn=GetAllWatches&args=%5B%22MFG%22%5D',
      type: 'GET',
      dataType: 'json',
      data: {  },
@@ -346,7 +346,7 @@ $(document).ready(function() {
          type: "POST",
          dataType: "json", // expected format for response
          contentType: "application/x-www-form-urlencoded", // send as JSON
-         data: {username:"Jim", orgName:"Org1"},
+         data: {username:"Lim", orgName:"Org1"},
 
          success: function(data) {
            //called when successful
@@ -409,22 +409,23 @@ $.ajax( {
      beforeSend : function( xhr ) {
          xhr.setRequestHeader( 'Authorization', 'Bearer ' + token );
      },
-      url: 'http://localhost:4000/channels/mychannel/chaincodes/mycc',
+      url: 'http://localhost:4000/channels/mychannel/chaincodes/watch_cc',
       type: 'POST',
       dataType: 'json',
       traditional: true,
       contentType: "application/json", 
       data: JSON.stringify({ 
-       "peers": ["peer0.org1.rolex.com","peer0.org2.dealer.com"],
-        "fcn":"addProduct",
-        "args":[serialNoVal, batchIdVal, modelNoVal, modelNameVal, dateMfgVal, certIdVal, priceVal, specsVal]
+       "peers": ["peer0.org1.example.com","peer0.org2.example.com"],
+        "fcn":"AddProduct",
+        "args":[{"SerialNo":serialNoVal, "BatchId":batchIdVal, "ModelNo":modelNoVal, "ModelName":modelNameVal, "Date":dateMfgVal}] 
+        //"args":["222" , "B1111", "M1123", "rolex333", "1/10/201", "C22222", "555555", "asada"]
      }),
      
      success: function(data){
       console.log(data);
      // alert(data);
      $('#question').show();
-     $('#alertmsg').html("Watch added successfully in Blockchain with Trx Id: " + data[0]+ " in Block Number "+ data[1]).fadeIn('slow');
+    // $('#alertmsg').html("Watch added successfully in Blockchain with Trx Id: " + data[0]+ " in Block Number "+ data[1]).fadeIn('slow');
      //$('#alertmsg').delay(3000).fadeOut('slow');
 
    

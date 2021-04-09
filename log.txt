@@ -1,2 +1,2 @@
 Installed chaincodes on peer:
-Package ID: watch_cc_1:2b5f58fb7e8a836a70a0f77c8980b55cc0d2626b02b208eadd6a1e4f34bc46db, Label: watch_cc_1
+Package ID: watch_cc_1:5a3cb28b25cb8b5c59c7e28e3465e488151fc885f05e660bbd700dafda7ae291, Label: watch_cc_1

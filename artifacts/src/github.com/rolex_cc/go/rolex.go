@@ -210,7 +210,7 @@ func (s *SmartContract) serviceUpdate(ctx contractapi.TransactionContextInterfac
 // ============================================================================================================================
 // Get All Batches Details for Transporter
 // ============================================================================================================================
-func (s *SmartContract) getAllWatches(ctx contractapi.TransactionContextInterface, args []string) error {
+func (s *SmartContract) GetAllWatches(ctx contractapi.TransactionContextInterface, args []string) error {
 
 	//get the AllBatches index
 	var owner string
@@ -242,7 +242,7 @@ func (s *SmartContract) getAllWatches(ctx contractapi.TransactionContextInterfac
 //End of changing the Batch ID
 
 /// Query callback representing the query of a chaincode
-func (s *SmartContract) query(ctx contractapi.TransactionContextInterface, args []string) error {
+func (s *SmartContract) Query(ctx contractapi.TransactionContextInterface, args []string) error {
 
 	var serl string // Entities
 	var err error
@@ -273,7 +273,7 @@ func (s *SmartContract) query(ctx contractapi.TransactionContextInterface, args 
 
 //Query to get the history of the BAtchID
 
-func (s *SmartContract) getproducthistory(ctx contractapi.TransactionContextInterface, args []string) error {
+func (s *SmartContract) GetProductHistory(ctx contractapi.TransactionContextInterface, args []string) error {
 
 	fmt.Printf("In getproducthistory Function")
 

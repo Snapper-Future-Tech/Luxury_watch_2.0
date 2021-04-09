@@ -191,8 +191,10 @@ app.post('/channels/:channelName/chaincodes/:chaincodeName', async function (req
         var peers = req.body.peers;
         var chaincodeName = req.params.chaincodeName;
         var channelName = req.params.channelName;
-        var fcn = req.body.fcn;
-        var args = req.body.args;
+                var fcn = req.body.fcn;
+                var args1 = req.body.args[0];
+                var args = JSON.stringify(args1); 
+        console.log("-------1-----------",JSON.stringify(args))
         var transient = req.body.transient;
         console.log(`Transient data is ;${transient}`)
         logger.debug('channelName  : ' + channelName);
@@ -269,9 +271,14 @@ app.get('/channels/:channelName/chaincodes/:chaincodeName', async function (req,
             return;
         }
         console.log('args==========', args);
-        args = args.replace(/'/g, '"');
-        args = JSON.parse(args);
-        logger.debug(args);
+        //args = args.replace(/'/g, '"');
+        var args1 = req.body.args;
+        // args = JSON.stringify(args1); 
+        console.log("-------1-----------",JSON.stringify(args))
+
+      //  args = JSON.parse(args);
+      
+        logger.debug('args : ' + args);
 
         let message = await query.query(channelName, chaincodeName, args, fcn, req.username, req.orgname);
 
